@@ -15,9 +15,11 @@
             android:id="@+id/action_homeFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/noteDetailsFragment"
         android:name="com.example.noteplus.ui.fragments.note_details.NoteDetailsFragment"
         android:label="NoteDetailsFragment"
         tools:layout="@layout/note_details_fragment"/>
+
 </navigation>

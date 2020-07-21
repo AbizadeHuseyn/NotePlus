@@ -1,43 +1,30 @@
 package com.example.noteplus.ui.fragments.home;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private final List<Fragment> lstFragment = new ArrayList<>();
-    private final List<String> lstTitles = new ArrayList<>();
+    private List<Fragment> listFragment;
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm) {
-        super(fm);
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, List<Fragment> fragments) {
+        super(fragmentActivity);
+        this.listFragment = fragments;
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        return lstFragment.get(position);
+    public Fragment createFragment(int position) {
+        return listFragment.get(position);
     }
 
     @Override
-    public int getCount() {
-        return lstTitles.size();
+    public int getItemCount() {
+        return listFragment.size();
     }
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return lstTitles.get(position);
-    }
-
-    public  void AddFragment (Fragment fragment,  String title){
-
-        lstFragment.add(fragment);
-        lstTitles.add(title);
-    }
 }

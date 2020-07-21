@@ -10,14 +10,13 @@ import com.example.noteplus.R;
 import com.example.noteplus.model.ItemNoteModel;
 
 
-public class NoteItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class NoteItemViewHolder extends RecyclerView.ViewHolder {
 
     private TextView heading;
     private TextView context;
     private TextView date;
 
     private NoteRecyclerViewClickListener mListener;
-
 
     public NoteItemViewHolder(@NonNull View itemView, NoteRecyclerViewClickListener listener) {
         super(itemView);
@@ -28,7 +27,6 @@ public class NoteItemViewHolder extends RecyclerView.ViewHolder implements View.
         date = itemView.findViewById(R.id.date);
 
         mListener = listener;
-        itemView.setOnClickListener(this);
 
     }
 
@@ -38,12 +36,13 @@ public class NoteItemViewHolder extends RecyclerView.ViewHolder implements View.
         context.setText(model.getContext());
         date.setText(model.getDate());
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onClick(view, getAdapterPosition(), model);
+            }
+        });
+
     }
 
-    @Override
-    public void onClick(View view) {
-
-        mListener.onClick(view, getAdapterPosition());
-
-    }
 }
